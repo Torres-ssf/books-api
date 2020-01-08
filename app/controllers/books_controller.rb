@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :update, :destroy]
+  before_action :set_book, only: %i[show update destroy]
 
   # GET /books
   def index
@@ -39,13 +41,14 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def book_params
-      params.require(:book).permit(:title, :author, :category, :pages, :progress)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def book_params
+    params.require(:book).permit(:id, :title, :author, :category, :pages)
+  end
 end
