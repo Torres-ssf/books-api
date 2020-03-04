@@ -36,7 +36,7 @@ module BooksApi
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'https://ssf-bookstore.herokuapp.com/'
+        origins '*'
         resource '/api/', headers: :any, methods: [:get, :put, :delete, :post, :options]
       end
     end
